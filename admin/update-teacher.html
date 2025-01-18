@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
+    <title>Update/Delete Teacher</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Update/Delete Teacher</h1>
+        <form id="updateTeacherForm">
+            <input type="text" id="teacherId" placeholder="Teacher ID" required>
+            <input type="text" id="newName" placeholder="New Name">
+            <input type="text" id="newDepartment" placeholder="New Department">
+            <input type="text" id="newSubject" placeholder="New Subject">
+            <button type="submit">Update Teacher</button>
+        </form>
+        <button id="deleteTeacherBtn">Delete Teacher</button>
+        <a href="admin.html">Back to Dashboard</a>
+    </div>
+    <script src="js/firebase.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>

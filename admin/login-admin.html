@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="../css/style.css">
+    <title>Admin Login</title>
+</head>
+<body>
+    <div class="container-adminlogin">
+        <h1>ADMIN LOGIN</h1>
+        <form id="adminsigninForm"> <!-- Removed method="post" -->
+            <div class="input-group">
+                <i class='bx bx-user login_icon'></i>
+                <input type="email" id="email" placeholder="Email" required>
+            </div>
+            <div class="input-group">
+                <i class='bx bx-lock-alt login_icon'></i>
+                <input type="password" id="password" placeholder="Password" required>
+            </div>
+            <button type="submit" class="button login-button" id="adminSignInButton">LOGIN</button>
+        </form>
+        <a href="../index.html">BACK TO HOME PAGE</a>
+    </div>
+    <script type="module" src="../firebase.js"></script> <!-- Ensure this path is correct -->
+</body>
+</html>

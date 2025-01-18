@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css"> <!-- Link to your CSS file -->
+    <title>Teacher Dashboard</title>
+    <script type="module">
+        // Import Firebase modules
+        // firebase.js
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
+        import { getFirestore, collection, getDocs, doc, setDoc } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-firestore.js";
+        import { getAuth, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+        apiKey: "AIzaSyAphVAiY-JLCzJWw_TJhgBHkls-rUlrr2Q",
+        authDomain: "st-appointment-a04cc.firebaseapp.com",
+        databaseURL: "https://st-appointment-a04cc-default-rtdb.firebaseio.com",
+        projectId: "st-appointment-a04cc",
+        storageBucket: "st-appointment-a04cc.firebasestorage.app",
+        messagingSenderId: "195604351900",
+        appId: "1:195604351900:web:deed8ea7a652ec6853d659"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const auth = getAuth(app);
+
+        // Function to load teachers from Firestore
+        async function loadTeachers() {
+            const teachersTableBody = document.getElementById('teachersTableBody');
+            const querySnapshot = await getDocs(collection(db, "teacher"));
+            querySnapshot.forEach((doc) => {
+                const teacher = doc.data();
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${teacher.name}</td>
+                    <td>${teacher.department}</td>
+                    <td>${teacher.subject}</td>
+                    <td>
+                        <button onclick="approveTeacher('${doc.id}')">Approve Teacher</button>
+                        <button onclick="cancelTeacher('${doc.id}')">Cancel Teacher</button>
+                    </td>
+                `;
+                teachersTableBody.appendChild(row);
+            });
+        }
+
+        // Function to approve a teacher
+        async function approveTeacher(teacherId) {
+            try {
+                const teacherDocRef = doc(db, "teacher", teacherId);
+                await setDoc(teacherDocRef, { appointmentStatus: "approved" }, { merge: true });
+                alert("Teacher approved successfully.");
+                // Optionally reload the teachers
+                loadTeachers();
+            } catch (error) {
+                console.error("Error approving teacher: ", error);
+            }
+        }
+
+        // Function to cancel a teacher
+        async function cancelTeacher(teacherId) {
+            try {
+                const teacherDocRef = doc(db, "teacher", teacherId);
+                await setDoc(teacherDocRef, { appointmentStatus: "canceled" }, { merge: true });
+                alert("Teacher canceled successfully.");
+                // Optionally reload the teachers
+                loadTeachers();
+            } catch (error) {
+                console.error("Error canceling teacher: ", error);
+            }
+        }
+
+        // Function to log out
+        async function logout() {
+            try {
+                await signOut(auth);
+                alert("Logged out successfully.");
+                window.location.href = '../index.html'; // Redirect to login page or home
+            } catch (error) {
+                console.error("Error logging out: ", error);
+            }
+        }
+
+        // Load teachers when the page loads
+        window.onload = loadTeachers;
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Teacher Dashboard</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Department</th>
+                    <th>Subject</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="teachersTableBody">
+                <!-- Teacher rows will be dynamically added here -->
+            </tbody>
+        </table>
+        <button onclick="logout()">Logout</button>
+    </div>
+</body>
+</html>

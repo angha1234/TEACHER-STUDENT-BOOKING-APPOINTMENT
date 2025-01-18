@@ -1,0 +1,167 @@
+/* styles.css */
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: #4158D0;
+    background: linear-gradient(to right, lightgreen, lightyellow, lightpink, lightblue, lightyellow);
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.messageDiv{
+    background-color:hsl(327,90%,28%);
+    color:white;
+    padding:10px 20px;
+    margin:10px;
+    border-radius: 5px;
+    font-size:1rem;
+    opacity:0;
+    animation:fadeOut 7s forwards;
+
+}
+
+.container-index {
+    background: white; /* Solid white background */
+    border: 5px solid black; /* Thick black border */
+    border-radius: 15px; /* Rounded corners */
+    padding: 40px;
+    box-shadow: 0 4px 20px rgba(139, 69, 19, 0.7); /* Thick brown shadow */
+    text-align: center; /* Center text */
+}
+
+.container-adminlogin {
+    background: white; /* Solid white background for the container */
+    border: 3.5px solid black; /* Thick black border */
+    border-radius: 15px; /* Rounded corners */
+    padding: 40px; /* Padding inside the container */
+    box-shadow: 0 4px 20px rgba(139, 69, 19, 0.7); /* Thick brown shadow */
+    text-align: center; /* Center text */
+}
+
+.container-teacher-register {
+    max-width: 400px; /* Set a maximum width for the container */
+    margin: auto; /* Center the container */
+    background: white; /* Solid white background for the container */
+    border: 3.5px solid black; /* Thick black border */
+    border-radius: 15px; /* Rounded corners */
+    padding: 40px; /* Padding inside the container */
+    box-shadow: 0 4px 20px rgba(139, 69, 19, 0.7); /* Thick brown shadow */
+    text-align: center; /* Center text */
+}
+
+
+.input-group {
+    display: flex; /* Use flexbox to align items in a row */
+    align-items: center; /* Center items vertically */
+    margin-bottom: 15px; /* Space between input groups */
+}
+
+.login_icon {
+    margin-right: 10px; /* Space between the icon and the input field */
+    font-size: 30px; /* Adjust icon size as needed */
+}
+
+.register-icon {
+    margin-right: 10px; /* Space between the icon and the input field */
+    font-size: 30px; /* Adjust icon size as needed */
+}
+
+/* Input field styles */
+input[type="email"],
+input[type="password"],
+input[type="text"] {
+    padding: 10px; /* Padding inside the input */
+    border: 2px solid black; /* Thick black border */
+    border-radius: 5px; /* Rounded corners for inputs */
+    font-size: 16px; /* Font size */
+    width: 100%; /* Full width */
+    outline: none; /* Remove default outline */
+    transition: border-color 0.3s; /* Smooth transition for border color */
+}
+
+/* Optional: Change border color on focus */
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="text"]:focus {
+    border-color: #007bff; /* Change border color on focus */
+}
+
+input {
+    display: block; /* Make inputs block elements */
+    width: 100%; /* Full width */
+    max-width: 300px; /* Maximum width */
+    margin: 10px auto; /* Center inputs with margin */
+    padding: 10px; /* Padding inside the input */
+    border: 2px solid #ccc; /* Light gray border */
+    border-radius: 5px; /* Rounded corners for inputs */
+    font-size: 16px; /* Font size */
+    transition: border-color 0.3s; /* Smooth transition for border color */
+}
+
+input:focus {
+    border-color: #007bff; /* Change border color on focus */
+    outline: none; /* Remove default outline */
+}
+
+h1 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+a {
+    display: inline-block; /* Make links block elements */
+    margin: 10px 0;
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.5); /* Semi-transparent background for links */
+    border-radius: 10px; /* Rounded corners for links */
+    color: #007bff; /* Link color */
+    text-decoration: none; /* Remove underline */
+    transition: background 0.3s, color 0.3s; /* Smooth transition */
+}
+
+a:hover {
+    background: rgba(255, 255, 255, 0.7); /* Change background on hover */
+    color: #0056b3; /* Darker color on hover */
+}
+
+.button {
+    display: inline-block; /* Make links block elements */
+    margin: 20px 5px; /* Increased vertical margin for more space between buttons */
+    padding: 15px 30px; /* Padding for button */
+    border: 3.5px solid black; /* Thick black border */
+    box-shadow: 0 4px 20px rgba(139, 69, 19, 0.7); /* Thick brown shadow */
+    border-radius: 10px; /* Rounded corners for buttons */
+    color: white; /* Text color */
+    text-decoration: none; /* Remove underline */
+    transition: background 0.3s, transform 0.3s; /* Smooth transition */
+}
+
+.login-admin-button {
+    background: linear-gradient(135deg, #007bff, #0056b3); /* Blue gradient for Admin */
+}
+
+.login-teacher-button {
+    background: linear-gradient(135deg, #28a745, #218838); /* Green gradient for Teacher */
+}
+
+.login-student-button {
+    background: linear-gradient(135deg, #dc3545, #c82333); /* Red gradient for Student */
+}
+
+.login-button {
+    background: linear-gradient(135deg, #28a745, #218838); /* Green gradient for Login */
+}
+
+.logout-button {
+    background-color: #ffc107; /* Yellow for Logout */
+}
+
+.button:hover {
+    background: rgba(255, 255, 255, 0.7); /* Change background on hover */
+    color: #0056b3; /* Darker color on hover */
+    transform: scale(1.05); /* Slightly enlarge on hover */
+}

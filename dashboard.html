@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Dashboard</title>
+</head>
+<body>
+    <h1>Dashboard</h1>
+    <button id="logoutBtn">Logout</button>
+    <h2>Book an Appointment</h2>
+    <form id="appointmentForm">
+        <input type="text" id="teacherEmail" placeholder="Teacher's Email" required>
+        <input type="text" id="appointmentMessage" placeholder="Message" required>
+        <button type="submit">Book Appointment</button>
+    </form>
+    <script src="js/firebase.js"></script>
+    <script src="js/appointment.js"></script>
+</body>
+</html>

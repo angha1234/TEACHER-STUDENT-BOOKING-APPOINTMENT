@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css"> <!-- Link to your CSS file -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css"> <!-- Boxicons -->
+    <title>TEACHER REGISTRATION</title>
+    <script type="module">
+        // Import Firebase modules
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
+        import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-firestore.js";
+        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyAphVAiY-JLCzJWw_TJhgBHkls-rUlrr2Q",
+            authDomain: "st-appointment-a04cc.firebaseapp.com",
+            databaseURL: "https://st-appointment-a04cc-default-rtdb.firebaseio.com",
+            projectId: "st-appointment-a04cc",
+            storageBucket: "st-appointment-a04cc.firebasestorage.app",
+            messagingSenderId: "195604351900",
+            appId: "1:195604351900:web:deed8ea7a652ec6853d659"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const auth = getAuth(app);
+
+        // Function to register a teacher
+        async function registerTeacher(event) {
+    event.preventDefault(); // Prevent the default form submission
+
+    console.log("Registering teacher..."); // Debug log
+
+    const name = document.getElementById('tname').value;
+    const department = document.getElementById('tdepartment').value;
+    const subject = document.getElementById('tsubject').value;
+    const email = document.getElementById('temail').value;
+    const password = document.getElementById('tpassword').value;
+
+    try {
+        // Create user with email and password
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
+
+        // Add teacher data to Firestore
+        await addDoc(collection(db, "teacher"), {
+            tname: name,
+            tdepartment: department,
+            tsubject: subject,
+            temail: email,
+            tappointmentStatus: "approved", // Default status
+            teacherId: user.uid // Store the user ID as teacherId
+        });
+
+        alert("Teacher registered successfully.");
+        console.log("Redirecting to teacher dashboard..."); // Debug log
+        window.location.href = 'teacher-dashboard.html'; // Redirect to the teacher dashboard
+    } catch (error) {
+        console.error("Error registering teacher: ", error);
+        alert("Registration failed: " + error.message);
+    }
+};
+    </script>
+</head>
+<body>
+    <div class="container-teacher-register">
+        <h1>TEACHER REGISTRATION</h1>
+        <form id="teacherRegisterForm" onsubmit="registerTeacher(event)">
+            <div class="input-group">
+                <i class="fa-regular fa-id-card register-icon"></i>
+                <input type="text" id="tname" placeholder="Enter Your Name" required>
+            </div>
+            <div class="input-group">
+                <i class="fa-regular fa-building register-icon"></i>
+                <input type="text" id="tdepartment" placeholder="Enter Your department" required>
+            </div>
+            <div class="input-group">
+                <i class="fa-solid fa-book register-icon"></i>
+                <input type="text" id="tsubject" placeholder="Enter Your subject" required>
+            </div>
+            <div class="input-group">
+                <i class='bx bx-user register-icon'></i>
+                <input type="email" id="temail" placeholder="Enter Your email" required>
+            </div>
+            <div class="input-group">
+                <i class='bx bx-lock-alt register-icon'></i>
+                <input type="password" id="tpassword" placeholder="Enter Your password" required>
+            </div>
+            <button type="submit">REGISTER</button>
+        </form>
+        <a href="teacher-login.html">Already Registered? Then Login</a>
+        </form>
+    </div>
+</body>
+</html>
